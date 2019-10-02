@@ -137,10 +137,15 @@ export const release = async (
     if (error.status === 404) {
       try {
         const tag_name = tag;
+        console.log(tag_name);
         const name = config.input_name || tag;
+        console.log(name);
         const body = releaseBody(config);
+        console.log(body);
         const draft = config.input_draft;
+        console.log(draft);
         const prerelease = config.input_prerelease;
+        console.log(prerelease);
         console.log(`👩‍🏭 Creating new GitHub release for tag ${tag_name}...`);
         let release = await releaser.createRelease({
           owner,
@@ -154,6 +159,7 @@ export const release = async (
         return release.data;
       } catch (error) {
         // presume a race with competing metrix runs
+        console.log(error);
         console.log(
           `⚠️ GitHub release failed with status: ${error.status}, retrying...`
         );
